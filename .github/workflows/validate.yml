@@ -9,7 +9,7 @@ jobs:
     - name: Install Claude Code CLI
       run: npm install -g @anthropic-ai/claude-code@latest
     - name: Validate plugin schema
-      run: claude plugin validate
+      run: claude plugin validate .
     - name: Check for ~~ placeholders
       run: grep -r "~~" . --include="*.md" || true
     - name: Confirm no hardcoded paths
