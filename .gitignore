@@ -1,0 +1,19 @@
+# Runtime logs — never commit
+logs/
+*.log
+
+# Local environment — never commit
+.env
+*.local.*
+.claude/settings.local.json
+
+# OS artifacts
+.DS_Store
+Thumbs.db
+
+# Node
+node_modules/
+
+# Plugin archives — redistributed separately
+*.tar.gz
+*.zip

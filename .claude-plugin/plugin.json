@@ -1,0 +1,12 @@
+{
+  "name": "qa-debug",
+  "version": "1.3.0",
+  "description": "AI-driven QA sentry — pessimistic testing, structured debugging, chaos planning, mutation auditing, contract enforcement, and error archiving. Human-in-the-loop at every step.",
+  "author": {
+    "name": "Chris"
+  },
+  "commands": "./commands",
+  "skills": "./skills",
+  "hooks": "./.claude-plugin/hooks.json",
+  "mcpServers": "./.mcp.json"
+}

@@ -1,0 +1,116 @@
+{
+  "SessionStart": [
+    {
+      "matcher": ".*",
+      "hooks": [
+        {
+          "type": "command",
+          "command": "${CLAUDE_PLUGIN_ROOT}/scripts/session-start.sh",
+          "timeout": 10,
+          "statusMessage": "Restoring QA debug session context..."
+        }
+      ]
+    }
+  ],
+
+  "PreToolUse": [
+    {
+      "matcher": "Bash",
+      "hooks": [
+        {
+          "type": "command",
+          "command": "${CLAUDE_PLUGIN_ROOT}/scripts/pre-bash-guard.sh",
+          "timeout": 10,
+          "statusMessage": "Checking command safety..."
+        }
+      ]
+    },
+    {
+      "matcher": "Write|Edit|MultiEdit",
+      "hooks": [
+        {
+          "type": "command",
+          "command": "${CLAUDE_PLUGIN_ROOT}/scripts/pre-write-guard.sh",
+          "timeout": 10,
+          "statusMessage": "Validating write target..."
+        }
+      ]
+    }
+  ],
+
+  "PostToolUse": [
+    {
+      "matcher": "Write",
+      "hooks": [
+        {
+          "type": "command",
+          "command": "${CLAUDE_PLUGIN_ROOT}/scripts/on-archive-write.sh",
+          "timeout": 15,
+          "statusMessage": "Checking for archive record..."
+        }
+      ]
+    },
+    {
+      "matcher": "Bash",
+      "hooks": [
+        {
+          "type": "command",
+          "command": "${CLAUDE_PLUGIN_ROOT}/scripts/on-bash-run.sh",
+          "timeout": 10
+        }
+      ]
+    }
+  ],
+
+  "PostToolUseFailure": [
+    {
+      "matcher": "Bash|Write|Edit|MultiEdit",
+      "hooks": [
+        {
+          "type": "prompt",
+          "prompt": "A tool just failed. Capture the failure details (tool name, command or file path, error message) and append a structured failure entry to the active Debug Report under a new '### Tool Failure Log' section with timestamp, tool name, input, and error. Do NOT retry automatically. Report the failure clearly in the chat and wait for the user's explicit instruction on how to proceed. If this is the second failure on the same step, suggest escalating to /postmortem.",
+          "timeout": 30
+        }
+      ]
+    }
+  ],
+
+  "TaskCompleted": [
+    {
+      "hooks": [
+        {
+          "type": "command",
+          "command": "${CLAUDE_PLUGIN_ROOT}/scripts/on-task-completed.sh",
+          "timeout": 15
+        }
+      ]
+    }
+  ],
+
+  "PreCompact": [
+    {
+      "matcher": ".*",
+      "hooks": [
+        {
+          "type": "command",
+          "command": "${CLAUDE_PLUGIN_ROOT}/scripts/pre-compact-snapshot.sh",
+          "timeout": 15,
+          "statusMessage": "Snapshotting session state before compaction..."
+        }
+      ]
+    }
+  ],
+
+  "Stop": [
+    {
+      "hooks": [
+        {
+          "type": "command",
+          "command": "${CLAUDE_PLUGIN_ROOT}/scripts/on-session-stop.sh",
+          "timeout": 15,
+          "statusMessage": "Checking for unresolved items..."
+        }
+      ]
+    }
+  ]
+}

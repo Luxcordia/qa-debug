@@ -1,0 +1,19 @@
+{
+  "mcpServers": {
+    "source-control": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-github"],
+      "env": {
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "${GITHUB_TOKEN}"
+      }
+    },
+    "project-tracker": {
+      "type": "http",
+      "url": "https://mcp.linear.app/mcp"
+    },
+    "monitoring": {
+      "type": "http",
+      "url": "https://mcp.sentry.dev/mcp"
+    }
+  }
+}
