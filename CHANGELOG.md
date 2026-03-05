@@ -10,6 +10,7 @@ All notable changes to the qa-debug plugin are documented here.
 - fix: removed stale qa-debug.plugin bundle artifact (ENOTDIR fix)
 - fix: MCP package names — @linear/mcp-server → @linear/mcp, @modelcontextprotocol/server-sentry → @sentry/mcp-server
 - fix: removed unsupported SubagentStop/TeammateIdle events (v2.1.51 schema)
+- fix: CI plugin validation — pass explicit plugin path to ensure workflows run green on new environments
 - docs: generalized marketplace name from github-local → local-marketplace
 
 ### v1.3.0 — 2026-03-05
