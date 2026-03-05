@@ -4,6 +4,18 @@ All notable changes to the qa-debug plugin are documented here.
 
 ---
 
+### v1.4.0 (Unreleased)
+
+### Added
+- Quality Guarantees section in README/CONTRIBUTING.md
+- plugin.json version aligned to v1.3.1
+- CI validation path fix documented
+
+### Documentation
+- Pre-1.3.0 history note added
+
+---
+
 ### v1.3.1 (2026-03-05)
 
 - fix: hooks.json path resolution — moved to .claude-plugin/hooks.json
